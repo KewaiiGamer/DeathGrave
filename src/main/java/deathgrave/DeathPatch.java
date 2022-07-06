@@ -26,7 +26,7 @@ public class DeathPatch {
         int tileX = mob.getTileX();
         int tileY = mob.getTileY();
         deathGrave.placeObject(mob.getLevel(), tileX, tileY, 0);
-        InventoryObjectEntity objectEntity = (InventoryObjectEntity)mob.getLevel().entityManager.getObjectEntity(tileX, tileY);
+        DeathGrave.DeathGraveInventoryObjectEntity objectEntity = (DeathGrave.DeathGraveInventoryObjectEntity)mob.getLevel().entityManager.getObjectEntity(tileX, tileY);
 
         for (PickupEntity pickupEntity : mob.getLevel().entityManager.pickups) {
             ItemPickupEntity next = (ItemPickupEntity) pickupEntity;
