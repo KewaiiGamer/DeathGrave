@@ -1,0 +1,6 @@
+.gradle/*
+.idea/*
+build/*
+hs*.log
+latest-crash.log
+steam_appid.txt
