@@ -26,6 +26,7 @@ public class DeathPatch {
         int tileY = mob.getTileY();
         ServerClient serverClient = ((PlayerMob) mob).getServerClient();
         boolean changeCoord = true;
+        if (serverClient.spawnTile == null) return;
         if (tileX == serverClient.spawnTile.x && tileY == serverClient.spawnTile.y) {
             tileY++;
         }
@@ -36,13 +37,12 @@ public class DeathPatch {
         }
         deathGrave.placeObject(mob.getLevel(), tileX, tileY, 0);
         DeathGrave.DeathGraveInventoryObjectEntity objectEntity = (DeathGrave.DeathGraveInventoryObjectEntity) mob.getLevel().entityManager.getObjectEntity(tileX, tileY);
-
         for (PickupEntity pickupEntity : mob.getLevel().entityManager.pickups) {
             ItemPickupEntity next = (ItemPickupEntity) pickupEntity;
             objectEntity.getInventory().addItem(mob.getLevel(), null, next.item, "death");
         }
 
-        deathGrave.setServerClient(serverClient);
+        objectEntity.setServerClient(serverClient);
         mob.getLevel().sendObjectUpdatePacket(tileX, tileY);
     }
 }

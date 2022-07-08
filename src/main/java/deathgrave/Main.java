@@ -10,6 +10,6 @@ public class Main {
     }
 
     public void init() {
-        ObjectRegistry.registerObject("kew_grave", new DeathGrave(), 10.0F, true);
+        ObjectRegistry.registerObject("kew_grave", new DeathGrave(), 10.0F, false);
     }
 }
