@@ -21,6 +21,7 @@ import java.util.HashSet;
 public class DeathPatch {
     @Advice.OnMethodExit
     static void onExit(@Advice.This Mob mob, @Advice.Argument(0) Attacker attacker, @Advice.Argument(1) HashSet<Attacker> attackers) {
+        if (!mob.isPlayer) return;
         DeathGrave deathGrave = (DeathGrave) ObjectRegistry.getObject("kew_grave");
         int tileX = mob.getTileX();
         int tileY = mob.getTileY();
