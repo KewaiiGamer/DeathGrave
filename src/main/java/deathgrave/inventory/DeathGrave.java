@@ -1,6 +1,5 @@
 package deathgrave.inventory;
 
-import com.sun.media.jfxmediaimpl.HostUtils;
 import necesse.engine.network.server.ServerClient;
 import necesse.engine.save.LoadData;
 import necesse.engine.save.SaveData;
@@ -8,7 +7,6 @@ import necesse.entity.mobs.PlayerMob;
 import necesse.entity.objectEntity.InventoryObjectEntity;
 import necesse.entity.objectEntity.ObjectEntity;
 import necesse.inventory.InventoryItem;
-import necesse.inventory.item.Item;
 import necesse.inventory.item.toolItem.ToolType;
 import necesse.level.gameObject.furniture.StorageBoxInventoryObject;
 import necesse.level.maps.Level;
@@ -49,6 +47,7 @@ public class DeathGrave extends StorageBoxInventoryObject {
     public static class DeathGraveInventoryObjectEntity extends InventoryObjectEntity {
 
         private String ownerName = null;
+
         public DeathGraveInventoryObjectEntity(Level level, int x, int y, int slots) {
             super(level, x, y, slots);
         }
@@ -56,6 +55,7 @@ public class DeathGrave extends StorageBoxInventoryObject {
         public void setServerClient(ServerClient ownerClient) {
             ownerName = ownerClient.playerMob.playerName;
         }
+
         @Override
         public void addSaveData(SaveData save) {
             super.addSaveData(save);
