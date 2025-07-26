@@ -6,6 +6,7 @@ import necesse.engine.save.SaveData;
 import necesse.entity.mobs.PlayerMob;
 import necesse.entity.objectEntity.InventoryObjectEntity;
 import necesse.entity.objectEntity.ObjectEntity;
+    import necesse.entity.pickup.ItemPickupEntity;
 import necesse.inventory.InventoryItem;
 import necesse.inventory.item.toolItem.ToolType;
 import necesse.level.gameObject.furniture.StorageBoxInventoryObject;
@@ -21,12 +22,15 @@ public class DeathGrave extends StorageBoxInventoryObject {
         if (level.isServer()) {
             DeathGrave.DeathGraveInventoryObjectEntity objectEntity = (DeathGrave.DeathGraveInventoryObjectEntity) level.entityManager.getObjectEntity(x, y);
             if (player.getNetworkClient().getName().equals(objectEntity.ownerName)) {
+                ArrayList<ItemPickupEntity> itemsDropped = new ArrayList<>();
                 for (int i = 0; i <= objectEntity.slots; i++) {
                     InventoryItem item = objectEntity.inventory.getItem(i);
-                    if (item != null)
-                        player.getInv().main.addItem(level, player, item, "grave", null);
+                    if (item != null) {
+                        ItemPickupEntity itemPickupEntity = new ItemPickupEntity(level, item, x, y, player.getDrawX(), player.getDrawY());
+                        itemsDropped.add(itemPickupEntity);
+                    }
                 }
-                super.onDestroyed(level, objectEntity.getLevelObject().layerID, objectEntity.getX(), objectEntity.getY(), null, null, null);
+                super.onDestroyed(level, objectEntity.getLevelObject().layerID, objectEntity.getX(), objectEntity.getY(), player, null, itemsDropped);
                 level.setObject(objectEntity.getX(), objectEntity.getY(), 0);
                 level.sendObjectUpdatePacket(objectEntity.getX(), objectEntity.getY());
                 objectEntity.remove();

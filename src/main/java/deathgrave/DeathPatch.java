@@ -42,6 +42,7 @@ public class DeathPatch {
         for (PickupEntity pickupEntity : mob.getLevel().entityManager.pickups) {
             ItemPickupEntity next = (ItemPickupEntity) pickupEntity;
             objectEntity.getInventory().addItem(mob.getLevel(), null, next.item, "death", null);
+            next.remove();
         }
 
         objectEntity.setServerClient(serverClient);
