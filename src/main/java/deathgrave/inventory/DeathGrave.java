@@ -40,6 +40,8 @@ public class DeathGrave extends StorageBoxInventoryObject {
 
     public DeathGrave() {
         super("kew_grave", 50, ToolType.UNBREAKABLE, new Color(83, 67, 119));
+        this.canPlaceOnLiquid = false;
+        this.canPlaceOnShore = false;
     }
 
 
