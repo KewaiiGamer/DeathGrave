@@ -32,16 +32,16 @@ public class DeathPatch {
         if (tileX == serverClient.spawnTile.x && tileY == serverClient.spawnTile.y) {
             tileY++;
         }
-        while (deathGrave.canPlace(mob.getLevel(), tileX, tileY, 0) != null) {
+        while (deathGrave.canPlace(mob.getLevel(), tileX, tileY, 0, false) != null) {
             if (changeCoord) tileX++;
             else tileY++;
             changeCoord = !changeCoord;
         }
-        deathGrave.placeObject(mob.getLevel(), tileX, tileY, 0);
+        deathGrave.placeObject(mob.getLevel(), tileX, tileY, 0, false);
         DeathGrave.DeathGraveInventoryObjectEntity objectEntity = (DeathGrave.DeathGraveInventoryObjectEntity) mob.getLevel().entityManager.getObjectEntity(tileX, tileY);
         for (PickupEntity pickupEntity : mob.getLevel().entityManager.pickups) {
             ItemPickupEntity next = (ItemPickupEntity) pickupEntity;
-            objectEntity.getInventory().addItem(mob.getLevel(), null, next.item, "death");
+            objectEntity.getInventory().addItem(mob.getLevel(), null, next.item, "death", null);
         }
 
         objectEntity.setServerClient(serverClient);

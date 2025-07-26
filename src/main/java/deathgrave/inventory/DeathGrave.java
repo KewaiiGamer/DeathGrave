@@ -18,15 +18,15 @@ public class DeathGrave extends StorageBoxInventoryObject {
 
     @Override
     public void interact(Level level, int x, int y, PlayerMob player) {
-        if (level.isServerLevel()) {
+        if (level.isServer()) {
             DeathGrave.DeathGraveInventoryObjectEntity objectEntity = (DeathGrave.DeathGraveInventoryObjectEntity) level.entityManager.getObjectEntity(x, y);
             if (player.getNetworkClient().getName().equals(objectEntity.ownerName)) {
                 for (int i = 0; i <= objectEntity.slots; i++) {
                     InventoryItem item = objectEntity.inventory.getItem(i);
                     if (item != null)
-                        player.getInv().main.addItem(level, player, item, "grave");
+                        player.getInv().main.addItem(level, player, item, "grave", null);
                 }
-                super.onDestroyed(level, objectEntity.getX(), objectEntity.getY(), null, null);
+                super.onDestroyed(level, objectEntity.getLevelObject().layerID, objectEntity.getX(), objectEntity.getY(), null, null, null);
                 level.setObject(objectEntity.getX(), objectEntity.getY(), 0);
                 level.sendObjectUpdatePacket(objectEntity.getX(), objectEntity.getY());
                 objectEntity.remove();
