@@ -6,10 +6,10 @@ import necesse.engine.save.SaveData;
 import necesse.entity.mobs.PlayerMob;
 import necesse.entity.objectEntity.InventoryObjectEntity;
 import necesse.entity.objectEntity.ObjectEntity;
-    import necesse.entity.pickup.ItemPickupEntity;
+import necesse.entity.pickup.ItemPickupEntity;
 import necesse.inventory.InventoryItem;
 import necesse.inventory.item.toolItem.ToolType;
-import necesse.level.gameObject.furniture.StorageBoxInventoryObject;
+import necesse.level.gameObject.container.StorageBoxInventoryObject;
 import necesse.level.maps.Level;
 
 import java.awt.*;
@@ -30,9 +30,9 @@ public class DeathGrave extends StorageBoxInventoryObject {
                         itemsDropped.add(itemPickupEntity);
                     }
                 }
-                super.onDestroyed(level, objectEntity.getLevelObject().layerID, objectEntity.getX(), objectEntity.getY(), player, null, itemsDropped);
-                level.setObject(objectEntity.getX(), objectEntity.getY(), 0);
-                level.sendObjectUpdatePacket(objectEntity.getX(), objectEntity.getY());
+                super.onDestroyed(level, objectEntity.getLevelObject().layerID, objectEntity.tileX, objectEntity.tileY, player, null, itemsDropped);
+                level.setObject(objectEntity.tileX, objectEntity.tileY, 0);
+                level.sendObjectUpdatePacket(objectEntity.tileX, objectEntity.tileY);
                 objectEntity.remove();
             }
         }
