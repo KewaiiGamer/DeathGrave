@@ -7,8 +7,8 @@ plugins {
 
 project.ext.modID = "pt.kewaii.deathgrave" // The unique id of your mod. Must be all lowercase and cannot use special characters.
 project.ext.modName = "DeathGrave" // The display name of your mod.
-project.ext.modVersion = "1.2.0" // Your current builds version. Must follow the xx.xx... format.
-project.ext.gameVersion = "1.0.1" // The target game version.
+project.ext.modVersion = "1.2.1" // Your current builds version. Must follow the xx.xx... format.
+project.ext.gameVersion = "1.0.2" // The target game version.
 project.ext.modDescription = "Spawn Death Grave on Death with items stored" // Short description of what your mod is.
 project.ext.author = "Kewaii" // Your name
 
@@ -28,7 +28,7 @@ project.ext.clientside = false
 //project.ext.modOptionalDependencies = ["optional.modid1", "optional.modid2"]
 
 // The path to the games install directory
-def gameDirectory = "/home/kewaii/.local/share/Steam/steamapps/common/Necesse"
+def gameDirectory = "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Necesse"
 
 // =================================================
 // ========== DO NOT EDIT BELOW THIS LINE ==========
