@@ -30,7 +30,7 @@ public class DeathGrave extends StorageBoxInventoryObject {
                         itemsDropped.add(itemPickupEntity);
                     }
                 }
-                super.onDestroyed(level, objectEntity.getLevelObject().layerID, objectEntity.tileX, objectEntity.tileY, player, null, itemsDropped);
+                super.onDestroyed(level, objectEntity.getLevelObject().layerID, objectEntity.tileX, objectEntity.tileY, player, player.getServerClient(), itemsDropped);
                 level.setObject(objectEntity.tileX, objectEntity.tileY, 0);
                 level.sendObjectUpdatePacket(objectEntity.tileX, objectEntity.tileY);
                 objectEntity.remove();
