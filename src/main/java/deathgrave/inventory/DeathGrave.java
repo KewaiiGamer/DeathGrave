@@ -3,6 +3,7 @@ package deathgrave.inventory;
 import necesse.engine.network.server.ServerClient;
 import necesse.engine.save.LoadData;
 import necesse.engine.save.SaveData;
+import necesse.entity.mobs.Attacker;
 import necesse.entity.mobs.PlayerMob;
 import necesse.entity.objectEntity.InventoryObjectEntity;
 import necesse.entity.objectEntity.ObjectEntity;
@@ -44,8 +45,17 @@ public class DeathGrave extends StorageBoxInventoryObject {
         this.canPlaceOnShore = false;
     }
 
+  @Override
+  public void onDestroyed(Level level, int layerID, int x, int y, Attacker attacker, ServerClient client, ArrayList<ItemPickupEntity> itemsDropped) {
+  }
 
-    @Override
+  @Override
+  public boolean onDamaged(Level level, int layerID, int x, int y, int damage, Attacker attacker, ServerClient client, boolean showEffect, int mouseX, int mouseY) {
+    return false;
+
+  }
+
+  @Override
     public ObjectEntity getNewObjectEntity(Level level, int x, int y) {
         return new DeathGraveInventoryObjectEntity(level, x, y, this.slots);
     }
